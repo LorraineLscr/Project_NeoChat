@@ -36,14 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @Assert\EqualTo(
-     * propertyPath= "password"),
-     * message= "Les deux mots de passe de sont pas identiques !"
-     * )
-     */
-    public $confirmPassword;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;

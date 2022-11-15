@@ -1,11 +1,19 @@
 body {
-    background: linear-gradient(340deg, rgba(246,0,254,1) 0%, rgba(0,78,250,1) 100%);
+    /* background: linear-gradient(340deg, rgba(246, 0, 254, 1) 0%, rgba(0, 78, 250, 1) 100%); */
+    background-image: url("../img/bdNeo.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #gradient {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.12398462803089982) 50%, rgba(0,0,0,1) 100%);
+/*     background: linear-gradient(0deg, rgba(0, 0, 0, 0.12398462803089982) 50%, rgba(0, 0, 0, 1) 100%); */
+}
+
+.container{
+    border-radius: 40px;
 }
 
 .card {
@@ -16,12 +24,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: transparent;
+    border: none;
+    -webkit-box-shadow: 5px 5px 26px 5px #000000;
+    box-shadow: 5px 5px 26px 5px #000000;
 }
 
 .card-header {
     display: flex;
     justify-content: center;
-    background-color: #474B4F;
+    background-color: #272b30;
 }
 
 .form-group {

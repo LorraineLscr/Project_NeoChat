@@ -1,7 +1,35 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/home.css')}}">
+{% endblock %}
+
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+<div class="container">
+    <div class="card border-primary mb-3" style="max-width: 90rem;">
+        <div class="card-header"><i class="fa-regular fa-comments"></i>Nom du Salon</div>
+        <div class="card-body">
+            <div class="form-group">
+                <div class="conversation">
+                    <div><img src="" alt="avatar interlocuteur"><span class="nomInterloc"> Nom de l'interlocuteur</span>
+                    </div>
+                    <div class="messageRecu">Message reçu</div>
+                    <div><img src="" alt="avatar perso"><span class="nomPerso"> Mon nom</span></div>
+                    <div class="messageEnvoye">Message envoyé</div>
+                </div>
+                <div>
+                    <label for="exampleTextarea" class="form-label mt-4">Envoyer un message : </label>
+                    <div id="inputFlex">
+                        <textarea class="form-control" id="exampleTextarea" rows="1"
+                            style="max-width: 90%;"></textarea>
+                        <button type="submit" class="btn btn-dark">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -9,6 +9,11 @@ li {
     transition: all 0.4s;
 }
 
+#navbar {
+    background-color: transparent;
+    border: none;
+}
 
-
-
+.navbar-toggler {
+    border: none;
+}

@@ -5,8 +5,11 @@ li {
     padding: 0;
 }
 
-.offcanvas {
+#ulFlex{
     transition: all 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #navbar {

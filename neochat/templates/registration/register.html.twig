@@ -18,27 +18,27 @@
         <br>
         {{form_start(registrationForm)}}
         <div class="form-group">
-            {{ form_row(registrationForm.nom, {"label":"Nom : ", "attr":{"placeholder":"Votre nom", "class":"form-control"}}) }}
+            {{ form_row(registrationForm.nom, {"label":"Nom : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.prenom, {"label":"Prénom : ", "attr":{"placeholder":"Votre prénom", "class":"form-control"}}) }}
+            {{ form_row(registrationForm.prenom, {"label":"Prénom : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.email, {"label":"Email : ", "attr":{"placeholder":"Votre email", "class":"form-control"}}) }}
+            {{ form_row(registrationForm.email, {"label":"Email : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.plainPassword, {"label":"Mot de Passe : ", "attr":{"placeholder":"Votre mot de passe", "class":"form-control"}}) }}
+            {{ form_row(registrationForm.plainPassword, {"label":"Mot de Passe : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.confirmPassword, {"label":"Confirmation du Mot de Passe : ", "attr":{"placeholder":"Votre mot de passe", "class":"form-control"}}) }}
+            {{ form_row(registrationForm.confirmPassword, {"label":"Confirmation du Mot de Passe : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.agreeTerms, {"label":"J'accepte les termes : ", "attr":{"placeholder":"", "class":"champ"}}) }}
+            {{ form_row(registrationForm.agreeTerms, {"label":"J'accepte les termes : ", "attr":{"placeholder":"", "class":"champ checkbox"}}) }}
         </div>
         <br>
         <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>

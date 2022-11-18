@@ -3,8 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+   {#  <h1>Register</h1> #}
    {#  {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
@@ -14,35 +13,37 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }} #}
-
     <div class="container">
-        <h3>Inscription</h3>
+        <h3>Veuillez-vous inscrire</h3>
         <br>
         {{form_start(registrationForm)}}
         <div class="form-group">
-            {{ form_row(registrationForm.nom, {"label":"Nom :", "attr":{"placeholder":"Votre nom", "class":"champ"}}) }}
+            {{ form_row(registrationForm.nom, {"label":"Nom : ", "attr":{"placeholder":"Votre nom", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.prenom, {"label":"Prénom :", "attr":{"placeholder":"Votre prénom", "class":"champ"}}) }}
+            {{ form_row(registrationForm.prenom, {"label":"Prénom : ", "attr":{"placeholder":"Votre prénom", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.email, {"label":"Email :", "attr":{"placeholder":"Votre email", "class":"champ"}}) }}
+            {{ form_row(registrationForm.email, {"label":"Email : ", "attr":{"placeholder":"Votre email", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.plainPassword, {"label":"Mot de Passe :", "attr":{"placeholder":"Votre mot de passe", "class":"champ"}}) }}
+            {{ form_row(registrationForm.plainPassword, {"label":"Mot de Passe : ", "attr":{"placeholder":"Votre mot de passe", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.confirmPassword, {"label":"Confirmation du Mot de Passe :", "attr":{"placeholder":"Votre mot de passe", "class":"champ"}}) }}
+            {{ form_row(registrationForm.confirmPassword, {"label":"Confirmation du Mot de Passe : ", "attr":{"placeholder":"Votre mot de passe", "class":"form-control"}}) }}
         </div>
         <br>
         <div class="form-group">
-            {{ form_row(registrationForm.agreeTerms, {"label":"J'accepte les termes :", "attr":{"placeholder":"", "class":"champ"}}) }}
+            {{ form_row(registrationForm.agreeTerms, {"label":"J'accepte les termes : ", "attr":{"placeholder":"", "class":"champ"}}) }}
         </div>
-        <button type="submit" class="btn btn-dark">S'inscrire</button>
+        <br>
+        <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>
         {{form_end(registrationForm)}}
+        <br>
+        <p>Déja inscrit ? Connectez-vous <a href="{{path('app_login')}}">ici</a></p>        
     </div>
 {% endblock %}

@@ -5,7 +5,6 @@
 {% block body %}
 <div class="container">
     <form method="post">
-        <br>
         {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -16,11 +15,12 @@
                 href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
         {% endif %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+        <h3>Veuillez-vous connecter</h3>
+        <br>
         <label for="inputEmail">Email</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
             autocomplete="email" required autofocus>
+            <br>
         <label for="inputPassword">Mot de Passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password"
             required>
@@ -42,5 +42,7 @@
             S'identifier
         </button>
     </form>
+    <br>
+    <p>Vous n'êtes toujours pas inscrit ? Inscrivez-vous <a href="{{path('app_register')}}">ici</a></p>   
 </div>
 {% endblock %}

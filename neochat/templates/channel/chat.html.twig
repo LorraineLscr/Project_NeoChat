@@ -20,16 +20,22 @@
                     <div class="divMesMessages">
                         <div class="divUserMsg">
                             <div class="divImgAvatar">
-                                <img class="imgUserMe" src="{{asset('assets/img/' ~ message.user.avatar ~ '.png')}}"
-                                alt="">
+                                <img class="imgUserMe"
+                                    src="{{asset('assets/img/avatar/' ~ message.user.avatar ~ '.png')}}" alt="">
                             </div>
-                            <span class="nomPerso">{{ message.user.pseudo }}</span>
+                            <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageEnvoye">{{ message.content }}</div>
                     </div>
                     {% else %}
                     <div class="mesMessagesRecus">
-                        <div><img src="" alt=""><span class="nomInterloc"> {{ message.user.pseudo }}</span></div>
+                        <div class="divUserMsg">
+                            <div class="divImgAvatar">
+                                <img class="imgUserMe"
+                                    src="{{asset('assets/img/avatar/' ~ message.user.avatar ~ '.png')}}" alt="">
+                            </div>
+                            <p class="nomPerso">{{ message.user.pseudo }}</p>
+                        </div>
                         <div class="messageRecu">{{ message.content }}</div>
                     </div>
                     {% endif %}
@@ -53,10 +59,11 @@
     chatDiv.scrollTop = chatDiv.scrollHeight; // On souhaite scroller toujours jusqu'au dernier message du chat
 
     let form = document.getElementById('form');
-        function handleForm(event) {
-            event.preventDefault(); // Empêche la page de se rafraîchir après le submit du formulaire
-        }
-        form.addEventListener('submit', handleForm,);
+
+    function handleForm(event) {
+        event.preventDefault(); // Empêche la page de se rafraîchir après le submit du formulaire
+    }
+    form.addEventListener('submit', handleForm, );
 
     const submit = document.querySelectorAll('button');
     submit[2].onclick = e => { // On change le comportement du submit

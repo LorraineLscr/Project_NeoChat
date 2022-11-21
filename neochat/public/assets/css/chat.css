@@ -1,3 +1,19 @@
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #640D70;
+    border-radius: 10px;
+  }
+
 body {
     background-image: url("../img/bdNeo.jpeg");
     background-position: center;
@@ -11,7 +27,7 @@ body {
     width: 100%;
 }
 
-.container{
+.container {
     border-radius: 40px;
 }
 
@@ -46,7 +62,7 @@ body {
 .conversation {
     width: 100%;
     overflow-y: scroll;
-
+    margin-bottom: 1rem;
 }
 
 .card-body {
@@ -54,7 +70,7 @@ body {
     backdrop-filter: blur(50px);
 }
 
-.fa-comments{
+.fa-comments {
     font-size: 2rem;
     margin-right: 1rem;
 }
@@ -65,11 +81,12 @@ body {
     margin: 0;
 }
 
-#submit{
+#submit {
     width: 20%;
 }
 
-.divMesMessages, .mesMessagesRecus{
+.divMesMessages,
+.mesMessagesRecus {
     display: flex;
     flex-direction: column;
     width: 95%;
@@ -83,24 +100,35 @@ body {
 
 .mesMessagesRecus {
     align-items: flex-start;
-    margin-left:2%;
+    margin-left: 2%;
     margin-top: .5rem;
 }
 
-.divUserMsg{
-    width: 7%;
+.divUserMsg {
+    width: 20%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: .5rem;
 }
 
-.divImgAvatar {
-    width: 50%;
+.divMesMessages .divUserMsg {
+    flex-direction: row-reverse;
 }
 
-.imgUserMe{
+.divUserMsg p {
+    margin: 0;
+}
+
+.divImgAvatar {
+    width: 20%;
+    height: auto;
+    margin: 0 0.5rem;
+}
+
+.divImgAvatar img {
     width: 100%;
+    border-radius: 50px;
 }
 
 .messageEnvoye {
@@ -125,7 +153,7 @@ body {
     top: 4px;
 }
 
-.messageRecu{
+.messageRecu {
     width: 250px;
     background: white;
     padding: 10px;
@@ -136,7 +164,7 @@ body {
     position: relative;
 }
 
-.messageRecu:before{
+.messageRecu:before {
     content: "";
     position: absolute;
     border-right: 17px solid white;

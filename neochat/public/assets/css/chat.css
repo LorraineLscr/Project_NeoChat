@@ -26,6 +26,12 @@
     background-color: transparent;
 }
 
+.conversation {
+    width: 100%;
+    overflow-y: scroll;
+
+}
+
 .card-body {
     background-color: transparent;
     backdrop-filter: blur(50px);
@@ -45,6 +51,23 @@
 #submit{
     width: 20%;
 }
+
+.divMesMessages, .mesMessagesRecus{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: 0;
+}
+
+.divMesMessages {
+    align-items: flex-end;
+}
+
+.mesMessagesRecus {
+    align-items: flex-start;
+    margin-left:2%;
+}
+
 .divUserMsg{
     width: 7%;
     display: flex;
@@ -70,10 +93,10 @@
 .messageEnvoye:before {
     content: "";
     position: absolute;
-    border-left: 20px solid white;
-    border-right: 20px solid transparent;
-    border-top: 20px solid white;
-    border-bottom: 20px solid transparent;
+    border-left: 17px solid white;
+    border-right: 17px solid transparent;
+    border-top: 17px solid white;
+    border-bottom: 17px solid transparent;
     right: -15px;
     top: 4px;
 }
@@ -92,10 +115,10 @@
 .messageRecu:before{
     content: "";
     position: absolute;
-    border-right: 20px solid white;
-    border-left: 20px solid transparent;
-    border-top: 20px solid white;
-    border-bottom: 20px solid transparent;
+    border-right: 17px solid white;
+    border-left: 17px solid transparent;
+    border-top: 17px solid white;
+    border-bottom: 17px solid transparent;
     left: -15px;
     top: 4px;
 }

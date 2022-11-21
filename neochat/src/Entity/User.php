@@ -54,6 +54,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $messages;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -198,6 +208,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

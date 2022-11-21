@@ -27,6 +27,11 @@
     </div>
     <br>
     <div class="form-group">
+        {{ form_row(registrationForm.pseudo, {"label":"Pseudo : ", "attr":{"placeholder":"", "class":"form-control"}})
+        }}
+    </div>
+    <br>
+    <div class="form-group">
         {{ form_row(registrationForm.email, {"label":"Email : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
     </div>
     <br>
@@ -41,8 +46,13 @@
     </div>
     <br>
     <div class="form-group">
-        {{ form_row(registrationForm.agreeTerms, {"label":"J'accepte les termes : ", "attr":{"placeholder":"", "class":"champ checkbox"}})
+        {{ form_row(registrationForm.avatar, {"label":"Avatar : ", "attr":{"placeholder":"", "class":"form-control"}})
         }}
+    </div>
+    <br>
+    <div class="form-group">
+        {{ form_row(registrationForm.agreeTerms, {"label":"J'accepte les termes : ", "attr":{"placeholder":"", "class":"champ checkbox"}})
+        }} <a href="{{path('app_mentions_legales')}}">Voir les termes</a>
     </div>
     <br>
     <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>

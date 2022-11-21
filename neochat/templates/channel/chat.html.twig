@@ -18,8 +18,12 @@
                     {% for message in messages %}
                     {% if app.user == message.user %}
                     <div class="divMesMessages">
-                        <div class="divUserMsg"><img class="imgUserMe" src="{{asset('assets/img/user.png')}}"
-                                alt=""><span class="nomPerso">{{ message.user.pseudo }}</span>
+                        <div class="divUserMsg">
+                            <div class="divImgAvatar">
+                                <img class="imgUserMe" src="{{asset('assets/img/' ~ message.user.avatar ~ '.png')}}"
+                                alt="">
+                            </div>
+                            <span class="nomPerso">{{ message.user.pseudo }}</span>
                         </div>
                         <div class="messageEnvoye">{{ message.content }}</div>
                     </div>

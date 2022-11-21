@@ -1,3 +1,20 @@
+body {
+    background-image: url("../img/bdNeo.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+#gradient {
+    height: 100vh;
+    width: 100%;
+}
+
+.container{
+    border-radius: 40px;
+}
+
 .card {
     height: 80vh;
     position: absolute;
@@ -61,11 +78,13 @@
 
 .divMesMessages {
     align-items: flex-end;
+    margin-top: .5rem;
 }
 
 .mesMessagesRecus {
     align-items: flex-start;
     margin-left:2%;
+    margin-top: .5rem;
 }
 
 .divUserMsg{
@@ -75,8 +94,13 @@
     align-items: center;
     margin-bottom: .5rem;
 }
+
+.divImgAvatar {
+    width: 50%;
+}
+
 .imgUserMe{
-    width: 25%;
+    width: 100%;
 }
 
 .messageEnvoye {

@@ -19,13 +19,13 @@
                     {% if app.user == message.user %}
                     <div class="divMesMessages">
                         <div class="divUserMsg"><img class="imgUserMe" src="{{asset('assets/img/user.png')}}"
-                                alt=""><span class="nomPerso">{{ message.user.prenom }}</span>
+                                alt=""><span class="nomPerso">{{ message.user.pseudo }}</span>
                         </div>
                         <div class="messageEnvoye">{{ message.content }}</div>
                     </div>
                     {% else %}
                     <div class="mesMessagesRecus">
-                        <div><img src="" alt=""><span class="nomInterloc"> {{ message.user.prenom }}</span></div>
+                        <div><img src="" alt=""><span class="nomInterloc"> {{ message.user.pseudo }}</span></div>
                         <div class="messageRecu">{{ message.content }}</div>
                     </div>
                     {% endif %}
@@ -49,22 +49,17 @@
     chatDiv.scrollTop = chatDiv.scrollHeight; // On souhaite scroller toujours jusqu'au dernier message du chat
 
     let form = document.getElementById('form');
-
-    function handleForm(event) {
-        event.preventDefault(); // Empêche la page de se rafraîchir après le submit du formulaire
-    }
-    form.addEventListener('submit', handleForm);
+        function handleForm(event) {
+            event.preventDefault(); // Empêche la page de se rafraîchir après le submit du formulaire
+        }
+        form.addEventListener('submit', handleForm,);
 
     const submit = document.querySelectorAll('button');
     submit[2].onclick = e => { // On change le comportement du submit
         const message = document.getElementById('message'); // Récupération du message dans l'input correspondant
         const data = { // La variable data sera envoyée au controller
             'content': message.value, // On transmet le message...
-            'channel': {
-                {
-                    channel.id
-                }
-            } // ... Et le canal correspondant
+            'channel': {{ channel.id }} // ... Et le canal correspondant
         }
         console.log(data); // Pour vérifier vos informations
         fetch('/message', { // On envoie avec un post nos datas sur le endpoint /message de notre application

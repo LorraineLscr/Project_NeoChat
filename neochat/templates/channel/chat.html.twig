@@ -17,13 +17,13 @@
                 <div class="conversation">
                     {% for message in messages %}
                     {% if app.user == message.user %}
-                    <div><img src="" alt="avatar interlocuteur"><span
-                            class="nomInterloc">{{ message.user.prenom }}</span>
+                    <div class="divUserMsg"><img class="imgUserMe" src="{{asset('assets/img/user.png')}}" alt=""><span
+                            class="nomPerso">{{ message.user.prenom }}</span>
                     </div>
-                    <div class="messageRecu">{{ message.content }}</div>
-                    {% else %}
-                    <div><img src="" alt="avatar perso"><span class="nomPerso"> {{ message.user.prenom }}</span></div>
                     <div class="messageEnvoye">{{ message.content }}</div>
+                    {% else %}
+                    <div><img src="" alt=""><span class="nomInterloc"> {{ message.user.prenom }}</span></div>
+                    <div class="messageRecu">{{ message.content }}</div>
                     {% endif %}
                     {% endfor %}
                 </div>

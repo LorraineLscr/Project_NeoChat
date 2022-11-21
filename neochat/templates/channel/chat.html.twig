@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{asset('assets/css/home.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/chat.css')}}">
 {% endblock %}
 
 {% block title %}Hello HomeController!{% endblock %}
@@ -28,9 +28,9 @@
                     {% endfor %}
                 </div>
                 <div>
-                    <form id="form" class="container row">
+                    <form id="form">
                         <input id="message" class="input-group-text col-sm-9" placeholder="Message" type="text" />
-                        <button id="submit" type="submit" class="btn btn-success col-sm-3">Envoyer</button>
+                        <button id="submit" type="submit" class="btn btn-dark col-sm-3">Envoyer</button>
                     </form>
                 </div>
             </div>

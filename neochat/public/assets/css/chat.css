@@ -1,0 +1,47 @@
+.card {
+    height: 80vh;
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    border: none;
+    -webkit-box-shadow: 5px 5px 26px 5px #000000;
+    box-shadow: 5px 5px 26px 5px #000000;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #272b30;
+}
+
+.form-group {
+    height: 70vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.card-body {
+    background-color: transparent;
+    backdrop-filter: blur(50px);
+}
+
+.fa-comments{
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+#form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+#submit{
+    width: 20%;
+}

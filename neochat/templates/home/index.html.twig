@@ -1,7 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block stylesheets %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('assets/css/home.css')}}">
+{% endblock %}
+
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
+<div class="homeNeochat">
+    <div>
+        <img class="animLogo" src="{{asset('./assets/img/logo_neochat_crop.png')}}" alt="">
+    </div>
+    <h2>Bienvenue sur</h2>
+    <h1>NeoChat</h1>
+    <h3>Lorraine LESCOUR et Enzo CHARDON</h3>
+    <br>
+    <h5>© CEPPIC 2022</h5>
+</div>
 
 {% endblock %}

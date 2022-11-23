@@ -34,6 +34,7 @@ class ChannelController extends AbstractController
             'channels' => $channels ?? []
         ]);
     }
+    
 
     /**
      * @Route("/chat/{id}", name="chat")

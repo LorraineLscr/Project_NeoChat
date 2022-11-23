@@ -3,10 +3,27 @@
 {% block title %}Réinitialisez votre mot de passe{% endblock %}
 
 {% block body %}
-    <h1>Réinitialisez votre mot de passe</h1>
-
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
+<div class="container">
+    <h2>Réinitialisez votre mot de passe</h2>
+    <br>
+    <form name="change_password_form" method="post">
+        <div class="form-group">
+            <div><label for="change_password_form_plainPassword_first" class="required">Nouveau mot de passe :</label>
+                <input class="form-control"
+                    type="password" id="change_password_form_plainPassword_first"
+                    name="change_password_form[plainPassword][first]" required="required" autocomplete="new-password">
+            </div>
+            <br>
+            <div><label for="change_password_form_plainPassword_second" class="required">Confirmer mot de passe :</label>
+                <input class="form-control"
+                    type="password" id="change_password_form_plainPassword_second"
+                    name="change_password_form[plainPassword][second]" required="required" autocomplete="new-password">
+            </div>
+        </div>
+        <br>
         <button class="btn btn-primary">Réinitialiser le mot de passe</button>
-    {{ form_end(resetForm) }}
+        <input type="hidden" id="change_password_form__token" name="change_password_form[_token]"
+            value="7a61710b5763873b93cc5c03a7daf3b._nd3FHQ5SUEMwGZlKBXDxs5p-V93eeFdBQNkd_1dmnE.th8ycyFgKCw59R8jSky2qP04yzkNDqdqdEAwLrAv9jyfHCNNGQsOCGiGEQ">
+    </form>
+</div>
 {% endblock %}

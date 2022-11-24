@@ -28,3 +28,20 @@ h2{
 .checkbox{
     margin-left: .5rem;
 }
+
+.nav-link {
+    border-right: none !important;
+    border-left: none !important;
+}
+
+.flexMentions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.container {
+    width: 40%;
+    margin: auto;
+}

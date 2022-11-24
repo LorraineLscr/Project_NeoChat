@@ -7,7 +7,7 @@
 
 h1 {
     font-family: 'Rubik', sans-serif;
-    font-size: 10rem;
+    font-size: 9rem;
 }
 
 h2{
@@ -37,4 +37,9 @@ h2{
     -webkit-animation: spin 5s linear infinite;
     -moz-animation: spin 5s linear infinite;
     animation: spin 5s linear infinite;
+    width: 100%;
+}
+
+.logo{
+    width: 30%;
 }

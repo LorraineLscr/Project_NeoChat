@@ -55,7 +55,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-    let chatDiv = document.getElementsByClassName('conversation');
+    let chatDiv = document.querySelector('.conversation');
     chatDiv.scrollTop = chatDiv.scrollHeight; // On souhaite scroller toujours jusqu'au dernier message du chat
 
     let form = document.getElementById('form');
@@ -88,7 +88,7 @@
     const url = new URL(link);
     url.searchParams.append('topic', '/chat/{{ channel.id }}'); // On ajoute le topic souhaité aux paramètres de la requête vers le Hub
 
-    const eventSource = new EventSource(url, {withCredentials: true}); // On s'abonne au Hub
+    const eventSource = new EventSource(url, {withCredentials: false}); // On s'abonne au Hub
 
     const appUser = {{ app.user.id }};
 
@@ -119,6 +119,7 @@
             <div class="messageRecu">${ message.content }</div>
         </div>`;
         chatDiv.scrollTop = chatDiv.scrollHeight; // On demande au navigateur de scroller le chat tout en bas pour bien apercevoir le dernier message apparu
+        console.log(chatDiv);
     }
          
    

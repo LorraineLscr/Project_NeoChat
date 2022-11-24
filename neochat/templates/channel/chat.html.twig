@@ -72,7 +72,8 @@
             'content': message.value, // On transmet le message...
             'channel': {{ channel.id }} // ... Et le canal correspondant
         }
-        console.log(data); // Pour vérifier vos informations
+        message.value = ""; // pour supprimer l'input value apres l'envoi
+        //console.log(data); // Pour vérifier vos informations
         fetch('/message', { // On envoie avec un post nos datas sur le endpoint /message de notre application
             method: 'POST',
             headers: {
@@ -94,7 +95,7 @@
 
     eventSource.onmessage = ({data}) => { // On écoute les événements publiés par le Hub
         const message = JSON.parse(data);
-        console.log(message);
+        // console.log(message);
         // Le contenu des événements est sous format JSON, il faut le parser
         document.querySelector('.conversation').innerHTML += 
         appUser === message.user.id ?

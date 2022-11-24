@@ -33,6 +33,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Les utilisateurs', 'fa fa-user', User::class); 
         yield MenuItem::linkToCrud('Les channels', 'fa fa-hashtag', Channel::class);
         yield MenuItem::linkToCrud('Les messages', 'fas fa-comments', Message::class);  
+        yield MenuItem::linkToRoute('Retour à l\'accueil', 'fa fa-door-open', ('app_home')); 
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

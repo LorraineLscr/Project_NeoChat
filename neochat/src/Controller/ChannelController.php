@@ -9,7 +9,9 @@ use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\Discovery;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class ChannelController extends AbstractController
 {
@@ -42,13 +44,17 @@ class ChannelController extends AbstractController
     public function chat(
         ChannelRepository $channelRepository,
         Channel $channel,
-        MessageRepository $messageRepository
+        MessageRepository $messageRepository,
+        Discovery $discovery,
+        HttpFoundationRequest $request
     ): Response
     {
         $channels = $channelRepository->findAll();
         $messages = $messageRepository->findBy([
             'channel' => $channel
         ], ['date' => 'ASC']);
+
+        $discovery->addLink($request);
 
         return $this->render('channel/chat.html.twig', [
             'channels' => $channels,

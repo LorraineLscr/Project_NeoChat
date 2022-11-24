@@ -83,7 +83,45 @@
         }).then((response) => {
             console.log(response);
         });
+    };
+    const link = '{{ app.request.attributes.get('_links').getLinksbyRel('mercure')[0].getHref }}';
+    const url = new URL(link);
+    url.searchParams.append('topic', '/chat/{{ channel.id }}'); // On ajoute le topic souhaité aux paramètres de la requête vers le Hub
+
+    const eventSource = new EventSource(url, {withCredentials: true}); // On s'abonne au Hub
+
+    const appUser = {{ app.user.id }};
+
+    eventSource.onmessage = ({data}) => { // On écoute les événements publiés par le Hub
+        const message = JSON.parse(data);
+        console.log(message);
+        // Le contenu des événements est sous format JSON, il faut le parser
+        document.querySelector('.conversation').innerHTML += 
+        appUser === message.user.id ?
+        `<div class="divMesMessages">
+            <div class="divUserMsg">
+                <div class="divImgAvatar">
+                    <img class="imgUserMe"
+                    src="{{ asset('assets/avatar/${ message.user.id }.png') }}" alt="">
+                </div>
+                <p class="nomPerso">${ message.user.pseudo }</p>
+            </div>
+            <div class="messageEnvoye">${ message.content }</div>
+        </div>` :
+        `<div class="mesMessagesRecus">
+            <div class="divUserMsg">
+                <div class="divImgAvatar">
+                    <img class="imgUserMe"
+                    src="{{ asset('assets/avatar/${ message.user.id }.png') }}" alt="">
+                </div>
+                <p class="nomPerso">${ message.user.pseudo }</p>
+            </div>
+            <div class="messageRecu">${ message.content }</div>
+        </div>`;
+        chatDiv.scrollTop = chatDiv.scrollHeight; // On demande au navigateur de scroller le chat tout en bas pour bien apercevoir le dernier message apparu
     }
+         
+   
 </script>
 {% endblock %}
 

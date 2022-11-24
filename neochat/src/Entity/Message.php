@@ -18,19 +18,19 @@ class Message
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("message")
+     * @Groups({"message"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("message")
+     * @Groups({"message"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
-     * @Groups("message")
+     * @Groups({"message"})
      */
     private $user;
 
@@ -41,7 +41,7 @@ class Message
 
     /**
      * @ORM\ManyToOne(targetEntity=Channel::class, inversedBy="messages")
-     * @Groups("message")
+     * @Groups({"message"})
      */
     private $channel;
 

@@ -2,19 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\Message as EntityMessage;
-use Symfony\Component\Mime\Message;
 use App\Repository\ChannelRepository;
+use JMS\Serializer\SerializerBuilder;
+use Symfony\Component\Mercure\Update;
+use Symfony\Component\Mercure\PublisherInterface;
+use App\Entity\Message as EntityMessage;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\BrowserKit\Response;
+use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Loader\Configurator\debug;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
-use Symfony\Component\Serializer\SerializerInterface as SerializerSerializerInterface;
 
 class MessageController extends AbstractController
 {
@@ -25,8 +24,8 @@ class MessageController extends AbstractController
     public function sendMessage(
         Request $request,
         ChannelRepository $channelRepository,
-        SerializerSerializerInterface $serializer,
-        EntityManagerInterface $em): JsonResponse
+        EntityManagerInterface $em,
+        PublisherInterface $publisher): JsonResponse
     {   
         //file_put_contents("C:/wamp64/www/ProjetNeoChat - Copie/neochat/log/info_". date('Y-m-d H:i:s') .".log", var_export($dataRecup, true));
         $data = json_decode($request->getContent()); // On récupère les data postées et on les déserialize
@@ -49,10 +48,17 @@ class MessageController extends AbstractController
         $em->persist($message);
         $em->flush(); // Sauvegarde du nouvel objet en DB
 
-        $jsonMessage = $serializer->serialize($message, 'json', [
-            'groups' => ['message'] // On serialize la réponse avant de la renvoyer
-        ]);
-        //echo "<script>console.log('{$data}' );</script>";
+        $serializer = SerializerBuilder::create()->build();
+        $jsonMessage = $serializer->serialize($message, 'json', SerializationContext::create()->setGroups(['Default', 'message']));
+
+        $update = new Update( // Création d'une nouvelle update
+            sprintf('/chat/%s', // On précise le topic, avec pour Id l'identifiant de notre Channel
+                $channel->getId()),
+            $jsonMessage // On y passe le message serializer en content value
+        );
+
+        $publisher($update); // Le Publisher est un service invokable. On peut publier directement l'update comme cela
+
         return new JsonResponse( // Enfin, on retourne la réponse
             $jsonMessage,
             http_response_code(200),

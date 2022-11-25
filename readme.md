@@ -19,6 +19,7 @@
 > Ouvrir un nouveau dossier sur le desktop  <br>
 > Ouvrir avec *VsCode* <br>
 > Ouvrir le terminal <br>
+> Créer un nouveau projet : `git init` <br>
 > Récupérer le projet : `git clone https://github.com/LorraineLscr/Project_NeoChat.git` <br>
 > Faire un update : `composer update` <br>
 > Modifier si besoin le fichier .env (mot de passe et nom de la base de données) <br>

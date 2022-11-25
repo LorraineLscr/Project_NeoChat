@@ -121,14 +121,12 @@ body {
 }
 
 .divImgAvatar {
-    width: 15%;
-    height: auto;
-    margin: 0 0.5rem;
-}
-
-.divImgAvatar img {
-    width: 100%;
-    border-radius: 50px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px; 
+    clip-path:ellipse(50% 50%);
+    border-radius: 50%;
+    margin: .5rem;
 }
 
 .messageEnvoye {

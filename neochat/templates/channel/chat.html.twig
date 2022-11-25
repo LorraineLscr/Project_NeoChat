@@ -19,9 +19,8 @@
                     {% if app.user == message.user %}
                     <div class="divMesMessages">
                         <div class="divUserMsg">
-                            <div class="divImgAvatar">
-                                <img class="imgUserMe"
-                                    src="{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}" alt="">
+                            <div class="divImgAvatar"
+                                style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover">
                             </div>
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
@@ -30,9 +29,9 @@
                     {% else %}
                     <div class="mesMessagesRecus">
                         <div class="divUserMsg">
-                            <div class="divImgAvatar">
-                                <img class="imgUserMe"
-                                    src="{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}" alt="">
+                                <div class="divImgAvatar"
+                                    style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover">
+                                </div>
                             </div>
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>

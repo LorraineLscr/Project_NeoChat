@@ -29,7 +29,7 @@
 
 <h2>🚀 Pour lancer le projet sur le serveur : </h2>
 
-> Ouvrir un second terminal pour lancer le serveur *Symfony* : `symfony server:start` <br>
+> Ouvrir un second terminal pour lancer le serveur local : `php -S 0.0.0.0:8000 -t -public` <br>
 > Ouvrir un troisième terminal lancer le *Mercure Hub* : <br>
 > `$env:SERVER_NAME=':3000'; $env:MERCURE_PUBLISHER_JWT_KEY='!ChangeMe!'; $env:MERCURE_SUBSCRIBER_JWT_KEY='!ChangeMe!';$env:MERCURE_JWT_KEY='!ChangeMe!'; ./mercure.exe run -config Caddyfile.dev` <br>
 > Dans un quatrième terminal ouvrir le *Mailer* : `php bin/console messenger:consume async`

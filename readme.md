@@ -28,30 +28,34 @@
 
 <br>
 
+<h2>🚨 Pré-requis :</h2>
+
+1. 📨 Récupérer le __Mailer Symfony__ (Intégrations *Symfony 5+*) sur __Mailtrap__ et le coller dans le fichier .env
+
+  > https://mailtrap.io/inboxes/
+
+  `###> symfony/mailer ###`<br>
+  `MAILER_DSN=smtp://**********************@smtp.mailtrap.io:2525?encryption=tls&auth_mode=login` <br>
+  `###< symfony/mailer ###` <br>
+
+2. 💬 Pour avoir des __channels__ de conversations dans le *NeoChat* pensez à insérer des noms de channels dans la table *channel* de la base de données !
+
+3. 🌐 Modifiez toutes les __adresses IP__ de __.env__, __CaddyFile__, __CaddyFile.dev__, __docker-compose.override.yml__, __docker-compose.yml__ par votre adresse IP local.
+Comment connaître son adresse IP local ? 
+Ouvrir l'invite de commandes via la recherche du menu Windows, dans l'invite de commande tapez `ipconfig` et cherchez adresse IPV4.
+
+<br>
+
 <h2>🚀 Pour lancer le projet sur le serveur : </h2>
 
-> Ouvrir un second terminal pour lancer le serveur local : `php -S 0.0.0.0:8000 -t -public` <br>
+> Ouvrir un second terminal pour lancer le serveur local : `php -S 0.0.0.0:8000 -t public` <br>
 > Ouvrir un troisième terminal lancer le *Mercure Hub* : <br>
 > `$env:SERVER_NAME=':3000'; $env:MERCURE_PUBLISHER_JWT_KEY='!ChangeMe!'; $env:MERCURE_SUBSCRIBER_JWT_KEY='!ChangeMe!';$env:MERCURE_JWT_KEY='!ChangeMe!'; ./mercure.exe run -config Caddyfile.dev` <br>
 > Dans un quatrième terminal ouvrir le *Mailer* : `php bin/console messenger:consume async`
 
 <br>
 
-<h2>🚨 Attention :</h2>
-
-📨 Récupérer le __Mailer Symfony__ (Intégrations *Symfony 5+*) sur __Mailtrap__ et le coller dans le fichier .env
-
-> https://mailtrap.io/inboxes/
-
-`###> symfony/mailer ###`<br>
-`MAILER_DSN=smtp://**********************@smtp.mailtrap.io:2525?encryption=tls&auth_mode=login` <br>
-`###< symfony/mailer ###` <br>
-
-💬 Pour avoir des __channels__ de conversations dans le *NeoChat* pensez à insérer des noms de channels dans la table *channel* de la base de données !
-
-<br>
-
-<h2> <img src="https://www.stackhero.io/assets/src/images/servicesLogos/openGraphVersions/mercure-hub.png?1c18600b" jsaction="load:XAeZkd;" jsname="HiaYvf" class="n3VNCb KAlRDb" alt="Mercure-Hub : Pour commencer" data-noaft="1" style="width="20 height="20"> Mercure : </h2>
+<h2> <img src="https://www.stackhero.io/assets/src/images/servicesLogos/openGraphVersions/mercure-hub.png?1c18600b" jsaction="load:XAeZkd;" jsname="HiaYvf" class="n3VNCb KAlRDb" alt="Mercure-Hub : Pour commencer" data-noaft="1" style="width="25 height="25"> Mercure : </h2>
 
 Pouvoir __diffuser des données en temps réel des serveurs aux clients__ est une exigence pour de nombreuses applications Web et mobiles modernes.
 
@@ -87,7 +91,7 @@ Parce qu'il est construit sur les meilleurs événements envoyés par le serveur
 
 <br>
 
-<h2> <img src="https://www.stackhero.io/assets/src/images/servicesLogos/openGraphVersions/mercure-hub.png?1c18600b" jsaction="load:XAeZkd;" jsname="HiaYvf" class="n3VNCb KAlRDb" alt="Mercure-Hub : Pour commencer" data-noaft="1" style="width="20 height="20"> Mercure Hub : </h2>
+<h2> <img src="https://www.stackhero.io/assets/src/images/servicesLogos/openGraphVersions/mercure-hub.png?1c18600b" jsaction="load:XAeZkd;" jsname="HiaYvf" class="n3VNCb KAlRDb" alt="Mercure-Hub : Pour commencer" data-noaft="1" style="width="25 height="25"> Mercure Hub : </h2>
 
 Pour gérer les connexions persistantes, *Mercure* s'appuie sur un Hub : un serveur dédié qui __gère les connexions SSE persistantes avec les clients__. L'application *Symfony* publie les mises à jour sur le hub, qui les diffusera aux clients.
 

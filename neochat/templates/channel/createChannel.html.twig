@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/chat.css')}}">
+{% endblock %}
+
+{% block title %}Créer un nouveau channel{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Créer un nouveau channel</h2>
+    <br>
+    {{form_start(createChannelForm)}}
+    <div class="form-group">
+        {{ form_row(createChannelForm.name, {"label":"Nom : ", "attr":{"placeholder":"", "class":"form-control"}}) }}
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary">Ajouter le channel</button>
+    {{form_end(createChannelForm)}}
+</div>
+{% endblock %}

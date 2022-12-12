@@ -64,9 +64,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $avatar;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Channel::class, mappedBy="user")
+     */
+    private $channels;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->channels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,6 +238,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @return Collection<int, Channel>
+     */
+    public function getChannels(): Collection
+    {
+        return $this->channels;
+    }
+
+    public function addChannel(Channel $channel): self
+    {
+        if (!$this->channels->contains($channel)) {
+            $this->channels[] = $channel;
+            $channel->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChannel(Channel $channel): self
+    {
+        if ($this->channels->removeElement($channel)) {
+            // set the owning side to null (unless already changed)
+            if ($channel->getUser() === $this) {
+                $channel->setUser(null);
+            }
+        }
 
         return $this;
     }

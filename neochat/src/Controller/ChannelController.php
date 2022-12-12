@@ -2,16 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\Channel;
 use App\Entity\User;
+use App\Entity\Channel;
+use App\Form\ChannelUserType;
+use App\Repository\UserRepository;
 use App\Repository\ChannelRepository;
 use App\Repository\MessageRepository;
-use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Mercure\Discovery;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ChannelController extends AbstractController
 {
@@ -36,7 +41,7 @@ class ChannelController extends AbstractController
             'channels' => $channels ?? []
         ]);
     }
-    
+
 
     /**
      * @Route("/chat/{id}", name="chat")
@@ -47,8 +52,7 @@ class ChannelController extends AbstractController
         MessageRepository $messageRepository,
         Discovery $discovery,
         HttpFoundationRequest $request
-    ): Response
-    {
+    ): Response {
         $channels = $channelRepository->findAll();
         $messages = $messageRepository->findBy([
             'channel' => $channel
@@ -62,5 +66,32 @@ class ChannelController extends AbstractController
             'messages' => $messages
         ]);
     }
-}
 
+    /**
+     * @Route("/createChannel", name="createChannel")
+     */
+    public function createChannel(
+        Request $request,
+        ManagerRegistry $doctrine,
+        ChannelRepository $channelRepository,
+        UserInterface $user
+    ){
+        $channel = new Channel();
+        $form = $this->createForm(ChannelUserType::class, $channel);
+        $form->handleRequest($request);
+
+        $channels = $channelRepository->findAll();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $channel->setUser($user);
+            $om  = $doctrine->getManager();
+            $om->persist($channel);
+            $om->flush();
+            return $this->redirectToRoute('app_home');
+        };
+
+        return $this->render('channel/createChannel.html.twig', [
+            'channels' => $channels,
+            'createChannelForm' => $form->createView(),
+        ]);
+    }
+}

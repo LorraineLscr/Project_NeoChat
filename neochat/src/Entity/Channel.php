@@ -29,6 +29,12 @@ class Channel
      */
     private $messages;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="channels")
+     */
+    private $user;
+
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -85,4 +91,17 @@ class Channel
     {
         return $this->name;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }

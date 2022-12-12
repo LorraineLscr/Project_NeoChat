@@ -21,12 +21,13 @@ class MessageController extends AbstractController
     /**
      * @Route("/message", name="message", methods={"POST", "GET"})
      */
+   
     public function sendMessage(
         Request $request,
         ChannelRepository $channelRepository,
         EntityManagerInterface $em,
         PublisherInterface $publisher): JsonResponse
-    {   
+    {    
         //file_put_contents("C:/wamp64/www/ProjetNeoChat - Copie/neochat/log/info_". date('Y-m-d H:i:s') .".log", var_export($dataRecup, true));
         $data = json_decode($request->getContent()); // On récupère les data postées et on les déserialize
         

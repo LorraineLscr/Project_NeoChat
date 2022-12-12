@@ -19,7 +19,7 @@
                     {% if app.user == message.user %}
                     <div class="divMesMessages">
                         <div class="divUserMsg">
-                            <div class="divImgAvatar" style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover"></div>
+                            <div class="divImgAvatar" style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover; background-position: center;"></div>
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageEnvoye">{{ message.content }}</div>
@@ -27,7 +27,7 @@
                     {% else %}
                     <div class="mesMessagesRecus">
                         <div class="divUserMsg">
-                            <div class="divImgAvatar" style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover"> </div>
+                            <div class="divImgAvatar" style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover;background-position: center;"> </div>
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageRecu">{{ message.content }}</div>
@@ -87,6 +87,8 @@
 
     const appUser = {{ app.user.id }};
 
+    const audio = new Audio("{{asset('assets/sound/notif.wav')}}");
+
     eventSource.onmessage = ({data}) => { // On écoute les événements publiés par le Hub
         const message = JSON.parse(data);
         // Le contenu des événements est sous format JSON, il faut le parser
@@ -95,7 +97,7 @@
             `<div class="divMesMessages">
             <div class="divUserMsg">
                 <div class="divImgAvatar"
-                                style="background-image : url('{{asset('assets/avatar/${ message.user.id }.png')}}'); background-size: cover">
+                                style="background-image : url('{{asset('assets/avatar/${ message.user.id }.png')}}'); background-size: cover; background-position: center;">
                             </div>
                 <p class="nomPerso">${ message.user.pseudo }</p>
             </div>
@@ -106,15 +108,17 @@
             `<div class="mesMessagesRecus">
             <div class="divUserMsg">
                 <div class="divImgAvatar"
-                                style="background-image : url('{{asset('assets/avatar/${ message.user.id }.png')}}'); background-size: cover">
+                                style="background-image : url('{{asset('assets/avatar/${ message.user.id }.png')}}'); background-size: cover; background-position: center;">
                             </div>
                 <p class="nomPerso">${ message.user.pseudo }</p>
             </div>
             <div class="messageRecu">${ message.content }</div>
         </div>`
+        audio.play();
         };
         
-        chatDiv.scrollTop = chatDiv.scrollHeight; // On demande au navigateur de scroller le chat tout en bas pour bien apercevoir le dernier message apparu
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+         // On demande au navigateur de scroller le chat tout en bas pour bien apercevoir le dernier message apparu
         console.log(chatDiv);
     }
          

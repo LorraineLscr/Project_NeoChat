@@ -19,9 +19,7 @@
                     {% if app.user == message.user %}
                     <div class="divMesMessages">
                         <div class="divUserMsg">
-                            <div class="divImgAvatar"
-                                style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover">
-                            </div>
+                            <div class="divImgAvatar" style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover"></div>
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageEnvoye">{{ message.content }}</div>
@@ -29,10 +27,7 @@
                     {% else %}
                     <div class="mesMessagesRecus">
                         <div class="divUserMsg">
-                                <div class="divImgAvatar"
-                                    style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover">
-                                </div>
-                            </div>
+                            <div class="divImgAvatar" style="background-image : url('{{asset('assets/avatar/' ~ message.user.id ~ '.png')}}'); background-size: cover"> </div>
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageRecu">{{ message.content }}</div>
@@ -94,30 +89,31 @@
 
     eventSource.onmessage = ({data}) => { // On écoute les événements publiés par le Hub
         const message = JSON.parse(data);
-        // console.log(message);
         // Le contenu des événements est sous format JSON, il faut le parser
-        document.querySelector('.conversation').innerHTML += 
-        appUser === message.user.id ?
-        `<div class="divMesMessages">
+        if(appUser === message.user.id) {
+            document.querySelector('.conversation').innerHTML += 
+            `<div class="divMesMessages">
             <div class="divUserMsg">
-                <div class="divImgAvatar">
-                    <img class="imgUserMe"
-                    src="{{ asset('assets/avatar/${ message.user.id }.png') }}" alt="">
-                </div>
+                <div class="divImgAvatar"
+                                style="background-image : url('{{asset('assets/avatar/${ message.user.id }.png')}}'); background-size: cover">
+                            </div>
                 <p class="nomPerso">${ message.user.pseudo }</p>
             </div>
             <div class="messageEnvoye">${ message.content }</div>
-        </div>` :
-        `<div class="mesMessagesRecus">
+        </div>`
+        } else {
+            document.querySelector('.conversation').innerHTML += 
+            `<div class="mesMessagesRecus">
             <div class="divUserMsg">
-                <div class="divImgAvatar">
-                    <img class="imgUserMe"
-                    src="{{ asset('assets/avatar/${ message.user.id }.png') }}" alt="">
-                </div>
+                <div class="divImgAvatar"
+                                style="background-image : url('{{asset('assets/avatar/${ message.user.id }.png')}}'); background-size: cover">
+                            </div>
                 <p class="nomPerso">${ message.user.pseudo }</p>
             </div>
             <div class="messageRecu">${ message.content }</div>
-        </div>`;
+        </div>`
+        };
+        
         chatDiv.scrollTop = chatDiv.scrollHeight; // On demande au navigateur de scroller le chat tout en bas pour bien apercevoir le dernier message apparu
         console.log(chatDiv);
     }

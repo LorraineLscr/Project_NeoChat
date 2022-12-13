@@ -34,10 +34,13 @@ class ChannelController extends AbstractController
      * @Route("/", name="channel")
      */
     public function getChannels(ChannelRepository $channelRepository): Response
-    {
-        $channels = $channelRepository->findAll();
+    {   
+        $general = "Général";
+        $generalChannel = $channelRepository->findChannelByName($general);
+        $channels = $channelRepository->findNoGeneral();
 
         return $this->render('base.html.twig', [
+            'generalChannel' => $generalChannel,
             'channels' => $channels ?? []
         ]);
     }
@@ -53,7 +56,9 @@ class ChannelController extends AbstractController
         Discovery $discovery,
         HttpFoundationRequest $request
     ): Response {
-        $channels = $channelRepository->findAll();
+        $general = "Général";
+        $generalChannel = $channelRepository->findChannelByName($general);
+        $channels = $channelRepository->findNoGeneral();
         $messages = $messageRepository->findBy([
             'channel' => $channel
         ], ['date' => 'ASC']);
@@ -61,6 +66,7 @@ class ChannelController extends AbstractController
         $discovery->addLink($request);
 
         return $this->render('channel/chat.html.twig', [
+            'generalChannel' => $generalChannel,
             'channels' => $channels,
             'channel' => $channel,
             'messages' => $messages
@@ -80,7 +86,7 @@ class ChannelController extends AbstractController
         $form = $this->createForm(ChannelUserType::class, $channel);
         $form->handleRequest($request);
 
-        $channels = $channelRepository->findAll();
+        $channels = $channelRepository->findNoGeneral();
         if ($form->isSubmitted() && $form->isValid()) {
             $channel->setUser($user);
             $om  = $doctrine->getManager();

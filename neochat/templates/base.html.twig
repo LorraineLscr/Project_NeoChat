@@ -62,6 +62,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li >
+                                        <a id="liCreateChannel" class="dropdown-item" href="{{ path('createChannel')}}"><i class="fa-solid fa-plus"></i> Créer votre channel</a>
+                                    </li>
                                     {% if channels %}
                                     {% for channel in channels %}
                                     <li><a class="dropdown-item"

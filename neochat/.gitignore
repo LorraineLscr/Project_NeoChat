@@ -1,5 +1,5 @@
 /.env
-mercure.db
+/mercure.db
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

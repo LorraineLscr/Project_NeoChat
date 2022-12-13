@@ -171,3 +171,11 @@ body {
     left: -15px;
     top: 4px;
 }
+
+.fg-emoji-picker-category-title{
+    color: black;
+}
+
+input {
+    color: black;
+}

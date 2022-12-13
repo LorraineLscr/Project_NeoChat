@@ -85,6 +85,8 @@ class ChannelController extends AbstractController
         $channel = new Channel();
         $form = $this->createForm(ChannelUserType::class, $channel);
         $form->handleRequest($request);
+        $general = "Général";
+        $generalChannel = $channelRepository->findChannelByName($general);
 
         $channels = $channelRepository->findNoGeneral();
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,6 +98,7 @@ class ChannelController extends AbstractController
         };
 
         return $this->render('channel/createChannel.html.twig', [
+            'generalChannel' => $generalChannel,
             'channels' => $channels,
             'createChannelForm' => $form->createView(),
         ]);

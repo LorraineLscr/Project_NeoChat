@@ -10,6 +10,10 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<div class="divVideo">
+    <video class="video" width="100%" height="100%" src="{{asset('assets/video/neochat_anim.mp4')}}" type="video/mp4" autoplay loop muted></video>
+</div>
+<div class='blur'></div>
 <div class="homeNeochat">
     <div class="logo">
         <img class="animLogo" src="{{asset('./assets/img/logo_neochat_crop.png')}}" alt="">
@@ -21,4 +25,18 @@
     <h5>© CEPPIC 2022</h5>
 </div>
 
+{% block javascript %}
+<script type="text/javascript">
+    blur = document.querySelector(".blur");
+    blur.style.backdropFilter = "blur(0px)";
+    logo = document.querySelector('.homeNeochat');
+    logo.style.transform = "scale(0)";
+    logo.style.opacity = 0;
+    setInterval(()=>{
+        logo.style.opacity = 1;
+        logo.style.transform = "scale(1)";
+        blur.style.backdropFilter = "blur(7px)";
+    }, 2000)
+</script>
+{% endblock %}
 {% endblock %}

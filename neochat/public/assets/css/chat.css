@@ -129,7 +129,7 @@ body {
 }
 
 .messageEnvoye {
-    width: 250px;
+    width: 300px;
     background: white;
     padding: 10px;
     text-align: center;
@@ -151,7 +151,7 @@ body {
 }
 
 .messageRecu {
-    width: 250px;
+    width: 300px;
     background: white;
     padding: 10px;
     text-align: center;

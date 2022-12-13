@@ -37,7 +37,8 @@
                 </div>
                 <div>
                     <form id="form">
-                        <input id="message" class="input-group-text col-sm-9" placeholder="Message" type="text" />
+                        <input  id="message" class="one input-group-text col-sm-9" placeholder="Message" type="text" />
+                        <button type="button" class="first-btn btn btn-dark">💩</button>
                         <button id="submit" type="submit" class="btn btn-dark col-sm-3">Envoyer</button>
                     </form>
                 </div>
@@ -47,8 +48,22 @@
 </div>
 </div>
 
+
 {% block javascript %}
+<script src="{{asset('assets/js/vanillaEmojiPicker.js')}}"></script>
 <script type="text/javascript">
+
+    new EmojiPicker({
+        trigger: [
+            {
+                selector: '.first-btn',
+                insertInto: ['.one']
+            }
+        ],
+        closeButton: false,
+        specialButtons: '#AC6CFF'
+    });
+
     let chatDiv = document.querySelector('.conversation');
     chatDiv.scrollTop = chatDiv.scrollHeight; // On souhaite scroller toujours jusqu'au dernier message du chat
 
@@ -59,14 +74,14 @@
     }
     form.addEventListener('submit', handleForm, );
 
-    const submit = document.querySelectorAll('button');
+    const submit = document.getElementById('submit');
     let count = 0;
     let maxCount = 5;
     setInterval(()=> {
             count = 0,
             message.setAttribute("placeholder", "Message");
         }, 20000);
-    submit[2].onclick = e => { // On change le comportement du submit 
+    submit.onclick = e => { // On change le comportement du submit 
         const message = document.getElementById('message');
         count++;
         if(count > maxCount){
@@ -76,7 +91,7 @@
         else {
                 // Récupération du message dans l'input correspondant
             const data = { // La variable data sera envoyée au controller
-                'content': message.value, // On transmet le message...
+                'content': message.value.replace(/<\/?[^>]+(>|$)/g, ""), // On transmet le message...
                 'channel': {{ channel.id }} // ... Et le canal correspondant
             }
             message.value = ""; // pour supprimer l'input value apres l'envoi

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.min.css">
     {# LIEN CSS #}
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-     {# SCRIPT BOOTSTRAP BUNDLE JS #}
+    {# SCRIPT BOOTSTRAP BUNDLE JS #}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
     </script>
@@ -49,26 +49,46 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}"><i class="fa-solid fa-house"></i> Accueil</a>
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}"><i
+                                        class="fa-solid fa-house"></i> Accueil</a>
                             </li>
-                            {% if app.user %}        
+                            {% if app.user %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('chat', {id: generalChannel.id}) }}"><i class="fa-regular fa-comment-dots"></i> {{ generalChannel.name }}</a>
+                                <a class="nav-link" href="{{ path('chat', {id: generalChannel.id}) }}"><i
+                                        class="fa-regular fa-comment-dots"></i> {{ generalChannel.name }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"><i class="fa-solid fa-hashtag"></i>
-                                    Les Salons
+                                    Les Channels
                                 </a>
-
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li >
-                                        <a id="liCreateChannel" class="dropdown-item" href="{{ path('createChannel')}}"><i class="fa-solid fa-plus"></i> Créer votre channel</a>
-                                    </li>
                                     {% if channels %}
                                     {% for channel in channels %}
                                     <li><a class="dropdown-item"
                                             href="{{ path('chat', {id: channel.id}) }}">{{ channel.name }}</a></li>
+                                    {% endfor %}
+                                    {% else %}
+                                    <li>Aucun channel trouvés</li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"><i class="fa-solid fa-hashtag"></i>
+                                    Mes Channels
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li>
+                                        <a id="liCreateChannel" class="dropdown-item"
+                                            href="{{ path('createChannel')}}"><i class="fa-solid fa-plus"></i> Créer
+                                            votre channel</a>
+                                    </li>
+                                    {% if channels %}
+                                    {% for mychannel in mychannels %}
+                                    <li><a class="dropdown-item"
+                                            href="{{ path('chat', {id: mychannel.id}) }}">{{ mychannel.name }}</a></li>
                                     {% endfor %}
                                     {% else %}
                                     <li>Aucun channel trouvés</li>
@@ -111,7 +131,8 @@
                     </div>
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="flexMentions">
-                            <a class="nav-link" href="{{path('app_mentions_legales')}}"><i class="fa-solid fa-scale-balanced"></i> Mentions Légales</a>
+                            <a class="nav-link" href="{{path('app_mentions_legales')}}"><i
+                                    class="fa-solid fa-scale-balanced"></i> Mentions Légales</a>
                         </li>
                     </ul>
                 </div>

@@ -19,10 +19,13 @@ class HomeController extends AbstractController
         $channels = $channelRepository->findNoGeneral();
         $general = "Général";
         $generalChannel = $channelRepository->findChannelByName($general);
+        $user = $this->getUser();
+        $mychannels = $channelRepository->findChannelByUserId($user);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'channels' => $channels ?? [],
-            'generalChannel' => $generalChannel
+            'generalChannel' => $generalChannel,
+            'mychannels' => $mychannels,
         ]);
     }
 

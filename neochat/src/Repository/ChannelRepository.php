@@ -80,4 +80,13 @@ class ChannelRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findChannelByUserId($user)
+    {
+        return $this->createQueryBuilder('c')
+        ->andWhere('c.user = :user')
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getResult();
+    }
 }

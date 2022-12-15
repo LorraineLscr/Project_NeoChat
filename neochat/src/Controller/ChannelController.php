@@ -38,10 +38,13 @@ class ChannelController extends AbstractController
         $general = "Général";
         $generalChannel = $channelRepository->findChannelByName($general);
         $channels = $channelRepository->findNoGeneral();
+        $user = $this->getUser();
+        $mychannels = $channelRepository->findChannelByUserId($user);
 
         return $this->render('base.html.twig', [
             'generalChannel' => $generalChannel,
-            'channels' => $channels ?? []
+            'channels' => $channels ?? [],
+            'mychannels' => $mychannels,
         ]);
     }
 
@@ -59,6 +62,8 @@ class ChannelController extends AbstractController
         $general = "Général";
         $generalChannel = $channelRepository->findChannelByName($general);
         $channels = $channelRepository->findNoGeneral();
+        $user = $this->getUser();
+        $mychannels = $channelRepository->findChannelByUserId($user);
         $messages = $messageRepository->findBy([
             'channel' => $channel
         ], ['date' => 'ASC']);
@@ -69,7 +74,8 @@ class ChannelController extends AbstractController
             'generalChannel' => $generalChannel,
             'channels' => $channels,
             'channel' => $channel,
-            'messages' => $messages
+            'messages' => $messages,
+            'mychannels' => $mychannels,
         ]);
     }
 
@@ -87,6 +93,8 @@ class ChannelController extends AbstractController
         $form->handleRequest($request);
         $general = "Général";
         $generalChannel = $channelRepository->findChannelByName($general);
+        $user = $this->getUser();
+        $mychannels = $channelRepository->findChannelByUserId($user);
 
         $channels = $channelRepository->findNoGeneral();
         if ($form->isSubmitted() && $form->isValid()) {
@@ -101,6 +109,7 @@ class ChannelController extends AbstractController
             'generalChannel' => $generalChannel,
             'channels' => $channels,
             'createChannelForm' => $form->createView(),
+            'mychannels' => $mychannels,
         ]);
     }
 }

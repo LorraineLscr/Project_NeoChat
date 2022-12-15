@@ -12,7 +12,11 @@
  <img src="https://www.stackhero.io/assets/src/images/servicesLogos/openGraphVersions/mercure-hub.png?1c18600b" jsaction="load:XAeZkd;" jsname="HiaYvf" class="n3VNCb KAlRDb" alt="Mercure-Hub : Pour commencer" data-noaft="1" style="width="40 height="40">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" height="40" width="52" alt="bootstrap logo"  />
 </div>
-<br><br><br>
+<br><br>
+<h3>Projet développé sous Windows
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" height="20" width="32" alt="windows8 logo"  />
+</h3>
+<br><br>
 
 <h2>🔥 Pour récupérer et démarrer le projet suivre ces instructions : </h2>
 

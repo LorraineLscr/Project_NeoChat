@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}Bienvenue sur Neochat !{% endblock %}</title>
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        href="{{asset('./assets/img/logo_neochat_crop.png')}}">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {# LIEN ICONES FONTAWESOME #}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -132,7 +132,7 @@
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="flexMentions">
                             <a class="nav-link" href="{{path('app_mentions_legales')}}"><i
-                                    class="fa-solid fa-scale-balanced"></i> Mentions Légales</a>
+                                    class="fa-solid fa-scale-balanced"></i> Conditions Générales d'Utilisations</a>
                         </li>
                     </ul>
                 </div>

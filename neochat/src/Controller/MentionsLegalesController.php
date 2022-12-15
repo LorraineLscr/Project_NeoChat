@@ -14,11 +14,17 @@ class MentionsLegalesController extends AbstractController
      */
     public function index(ChannelRepository $channelRepository): Response
     {   
-        $channels = $channelRepository->findAll();
+        $channels = $channelRepository->findNoGeneral();
+        $general = "Général";
+        $generalChannel = $channelRepository->findChannelByName($general);
+        $user = $this->getUser();
+        $mychannels = $channelRepository->findChannelByUserId($user);
         
         return $this->render('mentions_legales/index.html.twig', [
             'controller_name' => 'MentionsLegalesController',
-            'channels' => $channels ?? []
+            'channels' => $channels ?? [],
+            'generalChannel' => $generalChannel,
+            'mychannels' => $mychannels,
         ]);
     }
 }

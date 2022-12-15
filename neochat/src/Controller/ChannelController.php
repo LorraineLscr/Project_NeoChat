@@ -31,7 +31,7 @@ class ChannelController extends AbstractController
     }
 
     /**
-     * @Route("/", name="channel")
+     * @Route("/channels", name="channel")
      */
     public function getChannels(ChannelRepository $channelRepository): Response
     {   

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Entity\User;
 use DateTimeInterface;
 use App\Entity\Channel;
@@ -35,9 +36,9 @@ class Message
     private $user;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private DateTimeInterface $date;
+    private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity=Channel::class, inversedBy="messages")
@@ -47,7 +48,7 @@ class Message
 
     public function __construct()
     {
-        $this->date = new \DateTime(); // Initialisation de la date à chaque nouveau message
+        $this->date = new DateTime(); // Initialisation de la date à chaque nouveau message
     }
 
     public function getId(): ?int
@@ -79,12 +80,12 @@ class Message
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
 
-    public function setDate(?\DateTimeInterface $date): self
+    public function setDate(?\DateTime $date): self
     {
         $this->date = $date;
 

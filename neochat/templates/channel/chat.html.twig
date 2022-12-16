@@ -23,6 +23,7 @@
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageEnvoye">{{ message.content }}</div>
+                        <div class="date">{{ message.date | format_datetime('short', 'short', locale='fr', timezone='Europe/Paris') }}</div>
                     </div>
                     {% else %}
                     <div class="mesMessagesRecus">
@@ -31,6 +32,7 @@
                             <p class="nomPerso">{{ message.user.pseudo }}</p>
                         </div>
                         <div class="messageRecu">{{ message.content }}</div>
+                        <div class="date">{{ message.date|format_datetime('short', 'short', locale='fr', timezone='Europe/Paris') }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -121,6 +123,7 @@
     eventSource.onmessage = ({data}) => { // On écoute les événements publiés par le Hub
         const message = JSON.parse(data);
         // Le contenu des événements est sous format JSON, il faut le parser
+        let date = new Date(message.date);
         if(appUser === message.user.id) {
             document.querySelector('.conversation').innerHTML += 
             `<div class="divMesMessages">
@@ -131,6 +134,7 @@
                 <p class="nomPerso">${ message.user.pseudo }</p>
             </div>
             <div class="messageEnvoye">${ message.content }</div>
+            <div class="date">${ new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(date) }</div>
         </div>`
         } else {
             document.querySelector('.conversation').innerHTML += 
@@ -142,6 +146,7 @@
                 <p class="nomPerso">${ message.user.pseudo }</p>
             </div>
             <div class="messageRecu">${ message.content }</div>
+            <div class="date">${ new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(date) }</div>
         </div>`
         audio.play();
         };

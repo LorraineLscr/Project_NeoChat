@@ -179,3 +179,7 @@ body {
 input {
     color: black;
 }
+
+.date{
+    font-size: 0.8rem;
+}

@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'inscrire{% endblock %}
+{% block title %}
+{% if mode %}
+Modifier mon profil
+{% else %}
+S'inscrire
+{%endif%}
+{% endblock %}
 
 {% block body %}
 {#  <h1>Register</h1> #}
@@ -14,7 +20,12 @@
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }} #}
 <div class="container">
+    {% if mode %}
+    <h2>Modifier mon profil</h2>
+    {% else %}
     <h2>Veuillez-vous inscrire</h2>
+    {%endif%}
+
     <br>
     {{form_start(registrationForm)}}
     <div class="form-group">
@@ -56,9 +67,18 @@
         }} <a href="{{path('app_mentions_legales')}}">Voir les CGU</a>
     </div>
     <br>
+
+    {% if mode %}
+    <button type="submit" class="btn btn-lg btn-primary">Valider les modifications</button>
+    {% else %}
     <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>
+    {%endif%}
+
     {{form_end(registrationForm)}}
     <br>
+    {% if mode %}
+    {% else %}
     <p>Déja inscrit ? Connectez-vous <a href="{{path('app_login')}}">ici</a></p>
+    {%endif%}
 </div>
 {% endblock %}

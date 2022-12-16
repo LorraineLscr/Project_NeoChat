@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
@@ -33,10 +34,7 @@ class RegistrationController extends AbstractController
         if(!$user){
             $user = new User();
         }
-        $general = "Général";
-        $generalChannel = $channelRepository->findChannelByName($general);
-        $channels = $channelRepository->findNoGeneral();
-        $mychannels = $channelRepository->findChannelByUserId($user);
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -83,12 +81,30 @@ class RegistrationController extends AbstractController
         if ($user->getId() !== null) {
             $mode = true;
         }
-        return $this->render('registration/register.html.twig', [
-            'generalChannel' => $generalChannel,
-            'channels' => $channels,
-            'mychannels' => $mychannels,
-            'registrationForm' => $form->createView(),
-            'mode' => $mode
-        ]);
+
+        $general = "Général";
+        $generalChannel = $channelRepository->findChannelByName($general);
+        $channels = $channelRepository->findNoGeneral();
+        if($mode === true){
+            $mychannels = $channelRepository->findChannelByUserId($user);
+            return $this->render('registration/register.html.twig', [
+                'generalChannel' => $generalChannel,
+                'channels' => $channels,
+                'mychannels' => $mychannels,
+                'registrationForm' => $form->createView(),
+                'mode' => $mode
+            ]);
+        } else {
+            return $this->render('registration/register.html.twig', [
+                'generalChannel' => $generalChannel,
+                'channels' => $channels,
+                'mychannels' => '',
+                'registrationForm' => $form->createView(),
+                'mode' => $mode
+            ]);
+        }
+        
+
+        
     }
 }

@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     transition: all 2s;
+    height: 100vh;
 }
 
 h1 {
@@ -72,3 +73,12 @@ h2 {
     transition: all 2s;
   }
 
+@media screen and (max-width: 576px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}

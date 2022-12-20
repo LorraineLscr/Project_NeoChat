@@ -66,6 +66,7 @@ body {
 
 .card-body {
     background-color: transparent;
+    -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
 }
 
@@ -76,12 +77,12 @@ body {
 
 #form {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 0;
 }
 
 #submit {
-    width: 18%;
+    width: 15%;
 }
 
 .divMesMessages,
@@ -183,4 +184,40 @@ input {
 .date{
     font-size: 0.8rem;
     margin: 0 .5rem;
+}
+
+@media screen and (max-width: 576px) {
+    .card {
+        width: 95%;
+        height:70vh;
+        transform: translate(-50%, -60%);
+    }
+
+    .divUserMsg {
+        width: 50%;
+    }
+
+    .messageEnvoye, .messageRecu {
+        width: 200px;
+    }
+
+    .mesMessagesRecus {
+        margin-left: 4%;
+    }
+
+    .form-group {
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: transparent;
+    }
+
+    #form {
+        height: 3rem;
+    }
+
+    .first-btn {
+        display: none;
+    }
 }

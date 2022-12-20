@@ -56,3 +56,14 @@ a {
     white-space: nowrap;
     overflow: hidden;
 }
+
+@media screen and (max-width: 576px) {
+    
+    .container {
+        width: 90%;
+    }
+
+    h2 {
+        margin-top: 4rem;
+    }
+}

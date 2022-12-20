@@ -6,6 +6,8 @@ use DateTime;
 use App\Entity\User;
 use DateTimeInterface;
 use App\Entity\Channel;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MessageRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -49,6 +51,7 @@ class Message
     public function __construct()
     {
         $this->date = new DateTime(); // Initialisation de la date à chaque nouveau message
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,4 +111,5 @@ class Message
     {
         return $this->nom;
     }
+
 }

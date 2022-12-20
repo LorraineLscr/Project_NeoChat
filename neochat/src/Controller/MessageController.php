@@ -26,12 +26,11 @@ class MessageController extends AbstractController
         Request $request,
         ChannelRepository $channelRepository,
         EntityManagerInterface $em,
-        PublisherInterface $publisher): JsonResponse
-    {    
-        //file_put_contents("C:/wamp64/www/ProjetNeoChat - Copie/neochat/log/info_". date('Y-m-d H:i:s') .".log", var_export($dataRecup, true));
+        PublisherInterface $publisher): JsonResponse{
+
         $data = json_decode($request->getContent()); // On récupère les data postées et on les déserialize
         
-       if (empty($data->content)) {
+        if (empty($data->content)) {
             throw new AccessDeniedHttpException('No data sent');
         }
         $channel = $channelRepository->findOneBy([
@@ -47,7 +46,7 @@ class MessageController extends AbstractController
         $message->setUser($this->getUser()); // On lui attribue comme auteur l'utilisateur courant
 
         $em->persist($message);
-        $em->flush(); // Sauvegarde du nouvel objet en DB
+        $em->flush(); // Sauvegarde sur la DB
 
         $serializer = SerializerBuilder::create()->build();
         $jsonMessage = $serializer->serialize($message, 'json', SerializationContext::create()->setGroups(['Default', 'message']));
@@ -58,7 +57,7 @@ class MessageController extends AbstractController
             $jsonMessage // On y passe le message serializer en content value
         );
 
-        $publisher($update); // Le Publisher est un service invokable. On peut publier directement l'update comme cela
+        $publisher($update); // On le publie sur le hub
 
         return new JsonResponse( // Enfin, on retourne la réponse
             $jsonMessage,

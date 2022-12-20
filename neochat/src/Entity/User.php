@@ -73,6 +73,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->messages = new ArrayCollection();
         $this->channels = new ArrayCollection();
+        $this->message = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -276,4 +278,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

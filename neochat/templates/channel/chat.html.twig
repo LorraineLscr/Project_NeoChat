@@ -39,7 +39,7 @@
                 </div>
                 <div>
                     <form id="form">
-                        <input  id="message" class="one input-group-text col-sm-9" placeholder="Message" type="text"  autocomplete="off" />
+                        <input  id="message" class="one input-group-text col-sm-9" placeholder="Message" type="text" autocomplete="off" />
                         <button type="button" class="first-btn btn btn-dark">😀</button>
                         <button id="submit" type="submit" class="btn btn-dark col-sm-3">Envoyer</button>
                     </form>
@@ -77,12 +77,15 @@
     form.addEventListener('submit', handleForm, );
 
     const submit = document.getElementById('submit');
+
+    //Systeme d'anti-spams (max 5 messages avec interval de 20sec)
     let count = 0;
     let maxCount = 5;
     setInterval(()=> {
             count = 0,
             message.setAttribute("placeholder", "Message");
         }, 20000);
+
     submit.onclick = e => { // On change le comportement du submit 
         const message = document.getElementById('message');
         count++;
@@ -91,13 +94,12 @@
             message.value = "";
         }
         else {
-                // Récupération du message dans l'input correspondant
+            // Récupération du message dans l'input correspondant
             const data = { // La variable data sera envoyée au controller
                 'content': message.value.replace(/<\/?[^>]+(>|$)/g, ""), // On transmet le message...
                 'channel': {{ channel.id }} // ... Et le canal correspondant
             }
             message.value = ""; // pour supprimer l'input value apres l'envoi
-            //console.log(data); // Pour vérifier vos informations
             fetch('/message', { // On envoie avec un post nos datas sur le endpoint /message de notre application
                 method: 'POST',
                 headers: {

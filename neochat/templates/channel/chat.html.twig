@@ -114,7 +114,8 @@
     };
     const link = '{{ app.request.attributes.get('_links').getLinksbyRel('mercure')[0].getHref }}';
     const url = new URL(link);
-    url.searchParams.append('topic', '/chat/{{ channel.id }}'); // On ajoute le topic souhaité aux paramètres de la requête vers le Hub
+    url.searchParams.append('topic', `/chat/{{channel.id}}`);
+    url.searchParams.append('expires', Date.now() + 60 * 1000); // On ajoute le topic souhaité aux paramètres de la requête vers le Hub
 
     const eventSource = new EventSource(url, {withCredentials: false}); // On s'abonne au Hub
 

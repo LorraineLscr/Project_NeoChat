@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Repository\ChannelRepository;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\Mercure\Update;
-use Symfony\Component\Mercure\PublisherInterface;
+use GuzzleHttp\Client;
 use App\Entity\Message as EntityMessage;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -26,7 +28,7 @@ class MessageController extends AbstractController
         Request $request,
         ChannelRepository $channelRepository,
         EntityManagerInterface $em,
-        PublisherInterface $publisher): JsonResponse{
+        PublisherInterface $publisher): Response{
 
         $data = json_decode($request->getContent()); // On récupère les data postées et on les déserialize
         
@@ -49,17 +51,19 @@ class MessageController extends AbstractController
         $em->flush(); // Sauvegarde sur la DB
 
         $serializer = SerializerBuilder::create()->build();
-        $jsonMessage = $serializer->serialize($message, 'json', SerializationContext::create()->setGroups(['Default', 'message']));
+        $context = SerializationContext::create()->setGroups(['message']);
+
+        $jsonMessage = $serializer->serialize($message, 'json', $context);
 
         $update = new Update( // Création d'une nouvelle update
             sprintf('/chat/%s', // On précise le topic, avec pour Id l'identifiant de notre Channel
                 $channel->getId()),
-            $jsonMessage // On y passe le message serializer en content value
+            $jsonMessage,
         );
 
         $publisher($update); // On le publie sur le hub
 
-        return new JsonResponse( // Enfin, on retourne la réponse
+        return new Response( // Enfin, on retourne la réponse
             $jsonMessage,
             http_response_code(200),
             [],

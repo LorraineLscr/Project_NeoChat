@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Channel;
+use App\Entity\Message;
 use App\Form\ChannelUserType;
 use App\Repository\UserRepository;
 use App\Repository\ChannelRepository;
@@ -112,4 +113,22 @@ class ChannelController extends AbstractController
             'mychannels' => $mychannels,
         ]);
     }
+
+    /**
+     * @Route("/removeChannel/{id}", name="removeChannel")
+     */
+    public function remove(ManagerRegistry $doctrine, Channel $channel)
+    {   
+        $om = $doctrine->getManager();
+        $messages = $channel->getMessages();
+        foreach ($messages as $message) {
+            $om = $doctrine->getManager();
+            $om->remove($message);
+            $om->flush();
+        }
+        $om->remove($channel);
+        $om->flush();
+        return $this->redirectToRoute("app_home");
+    }
+
 }

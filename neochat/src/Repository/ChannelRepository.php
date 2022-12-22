@@ -89,4 +89,5 @@ class ChannelRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+
 }

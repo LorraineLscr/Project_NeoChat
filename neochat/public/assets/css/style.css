@@ -51,6 +51,20 @@ h2 {
     color: #AC6CFF;
 }
 
+#liMyChannel {
+    display: flex;
+    justify-content: space-around;
+}
+
+#liMyChannel a:first-of-type{
+    width: 80%;
+}
+
+#liMyChannel a:last-of-type:hover{
+    color: #DC3545;
+}
+
+
 a {
     text-overflow: ellipsis;
     white-space: nowrap;
